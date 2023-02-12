@@ -1,0 +1,10 @@
+body{
+  background-image: url("../images/background.jpg");
+}
+.btn-size{
+  font-size: 13px;
+}
+a{
+  text-decoration: none;
+  color: #fff;
+}
