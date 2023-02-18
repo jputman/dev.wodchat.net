@@ -26,6 +26,7 @@ abstract class BaseController extends Controller
      *
      * @var CLIRequest|IncomingRequest
      */
+    public $data;
     protected $request;
 
     /**
@@ -52,9 +53,31 @@ abstract class BaseController extends Controller
 
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
-
+        $this->site_config();
+        $this->build_menu();
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
     }
+    protected function build_menu(){
+        $menuModel = model('App\Models\Menu', false);
+        $parentItems = $menuModel->where("parent_id",null)->findAll();
+        $menuItems = array();
+        foreach($parentItems as $parent){
+          if($parent["permissions"] == null){
+            $subItems = $menuModel->where("parent_id",$parent["menu_id"])->findAll();
+            $parent["children"] = $subItems;
+            array_push($menuItems,$parent); 
+          }
+        }
+        $this->data["site_menu"] = view("/General/main_menu", ['menuItems' => $menuItems]);
+      }
+      protected function site_config(){
+        $SiteConfigModel = model('App\Models\SiteConfig', false);
+        $configItems = $SiteConfigModel->findAll();
+        foreach($configItems as $item){
+          $_SESSION[$item["item"]] = $item["value"];
+        }
+        session_write_close();
+      }    
 }

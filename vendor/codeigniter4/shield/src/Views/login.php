@@ -1,10 +1,6 @@
-<?= $this->extend(config('Auth')->views['layout']) ?>
-
-<?= $this->section('title') ?><?= lang('Auth.login') ?> <?= $this->endSection() ?>
-
-<?= $this->section('main') ?>
-
-    <div class="container d-flex justify-content-center p-5">
+<?=$this->extend("templates/main_template")?>
+<?=$this->section("main_section");?>
+<div class="container d-flex justify-content-center p-5">
         <div class="card col-12 col-md-5 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title mb-5"><?= lang('Auth.login') ?></h5>
@@ -67,5 +63,4 @@
             </div>
         </div>
     </div>
-
-<?= $this->endSection() ?>
+<?=$this->endSection()?>
