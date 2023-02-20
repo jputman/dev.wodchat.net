@@ -60,13 +60,15 @@ class AuthGroups extends ShieldAuthGroups
     public array $permissions = [
         'admin.access'        => 'Can access the sites admin area',
         'admin.settings'      => 'Can access the main site settings',
-        'site.access'        => 'Can access the sites admin area',
+        'site.access'         => 'Can access the sites admin area',
         'users.access'        => 'Can access the sites admin area',
         'users.manage-admins' => 'Can manage other admins',
         'users.create'        => 'Can create new non-admin users',
         'users.edit'          => 'Can edit existing non-admin users',
         'users.delete'        => 'Can delete existing non-admin users',
-        'chat.access'        => 'Can access the sites admin area',
+        'chat.access'         => 'Can access the sites admin area',
+        'character.access'    => 'Can access beta-level features',
+        'character.view-all'  => 'View All Characters',
         'beta.access'         => 'Can access beta-level features',
     ];
 
@@ -82,6 +84,7 @@ class AuthGroups extends ShieldAuthGroups
             'site.*',
             'users.*',
             'chat.*',
+            'character.*',
             'beta.*',
         ],
         'admin' => [
