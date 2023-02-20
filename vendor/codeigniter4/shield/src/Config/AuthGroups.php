@@ -62,14 +62,12 @@ class AuthGroups extends BaseConfig
      * If a permission is not listed here it cannot be used.
      */
     public array $permissions = [
-        'admin.access'        => 'Can access the admin area',
-        'site.access'         => 'Can access the main site settings',
+        'admin.access'        => 'Can access the sites admin area',
+        'admin.settings'      => 'Can access the main site settings',
         'users.manage-admins' => 'Can manage other admins',
-        'users.access'        => 'Can access the user admin area',
+        'users.create'        => 'Can create new non-admin users',
         'users.edit'          => 'Can edit existing non-admin users',
         'users.delete'        => 'Can delete existing non-admin users',
-        'users.manage-staff'  => 'Can manage other roles',        
-        'chat.access'         => 'Can access chat level features',
         'beta.access'         => 'Can access beta-level features',
     ];
 
@@ -85,6 +83,7 @@ class AuthGroups extends BaseConfig
             'site.*',
             'users.*',
             'chat.*',
+            'chat.access',
             'beta.*',
         ],
         'admin' => [
