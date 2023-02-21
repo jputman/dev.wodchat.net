@@ -1,11 +1,17 @@
 <?php
+  $disabled = null;
+  if($field["player_editable"] == 0){
+    $disabled = " disabled";
+  }
   $dropdown_id = $field["dropdown_id"];
   $key = array_search($field["id"], array_column($stats, 'field_id'));
-  $selected_value = $stats[$key]["field_value"];
-  if(!$selected_value && $field["defaultValue"]){
+  if($key !== false){
+    $selected_value = $stats[$key]["field_value"];
+  }
+  elseif($key === false && $field["defaultValue"]){
     $selected_value = $field["defaultValue"];
   }
-  elseif(!$selected_value){
+  else{
     $selected_value = null;
   }
 ?>
@@ -13,7 +19,7 @@
   <?=$field["displayValue"];?>
 </td>
 <td>
-  <select class="form-select" aria-label="Default select example">
+  <select class="form-select" aria-label="Default select example"<?=$disabled;?>>
     <option selected disabled value="">Select <?=$field["displayValue"];?></option>
     <?php foreach ($dropdowns[$dropdown_id] as $obj): ?>
       <?php

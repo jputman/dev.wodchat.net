@@ -8,26 +8,26 @@
   <div class="card">
     <div class="card-body">
       <form class="needs-validation" novalidate>
-        <table>
-          <tr>
-            <?php foreach ($sheet as $item): ?>
-              <?php
-              if($item["line"] != $current_line){
-                $current_line++;
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+        <?php foreach ($sheet as $item): ?>
+        <?php
+          if($item["line"] != $current_line){
+              $current_line++;
+              if ($item["item_id"] != 1 && $item["item_id"] != 7) {
                 ?>
-                </tr>
-                <tr>
+                  </tr>
+                  <tr>
                 <?php
               }
-              $data = [
-                "field" => $item,
-              ];
-              $key = array_search($item["item_id"], array_column($sheetItems, 'id'));
-              echo view("/Characters/Items/" . $sheetItems[$key]["name"],$data);
-              ?>
-            <?php endforeach ?>
-          </tr>
-        </table>
+            }
+            $data = [
+              "field" => $item,
+            ];
+            $key = array_search($item["item_id"], array_column($sheetItems, 'id'));
+            echo view("/Characters/Items/" . $sheetItems[$key]["name"],$data);
+            ?>          
+        <?php endforeach ?>
+        </div>
       </form>
     </div>
   </div>

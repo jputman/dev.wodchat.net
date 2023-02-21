@@ -49,7 +49,7 @@ class Characters extends BaseController
       return view('errors/access_denied',$this->data);
     }
     // Load the character stats from the database.
-    $stats = (model('App\Models\CharacterStats', false))->where("id",$character["id"])->findAll();
+    $stats = (model('App\Models\CharacterStats', false))->where("character_id",$character["id"])->findAll();
     // Get the list of dropdowns in the database.
     $dropdowns = (model('App\Models\Dropdowns', false))->findAll();
     // Get the values of each dropdown and populate it into an array to be used in the display.
